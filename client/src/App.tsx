@@ -1,261 +1,160 @@
 import { useState } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Container } from './components/ui/Container';
-import { Badge } from './components/ui/Badge';
 import { Button } from './components/ui/Button';
-import { SectionHeading } from './components/ui/SectionHeading';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './components/ui/Card';
-import { PROJECT_DETAILS } from './data/projectData';
-import { Building2, Sparkles, ShieldCheck } from 'lucide-react';
-import { Hero } from './sections/Hero';
+import { Badge } from './components/ui/Badge';
+import { Eyebrow } from './components/ui/Eyebrow';
+import { ArrowDown, Maximize2 } from 'lucide-react';
 
 export function App() {
-  const [modalOpenMessage, setModalOpenMessage] = useState<string | null>(null);
+  const [modalFeedback, setModalFeedback] = useState<string | null>(null);
+  const [simulatedWidth, setSimulatedWidth] = useState<'full' | '320px' | '375px' | '390px' | '430px' | '768px' | '1024px' | '1280px' | '1440px'>('full');
 
   const handleBookVisit = () => {
-    setModalOpenMessage('Book Site Visit CTA triggered successfully. (Enquiry modal will connect here in lead generation phase)');
+    setModalFeedback('"Book a Site Visit" primary CTA triggered successfully.');
   };
 
+  const sections = [
+    { id: 'overview', title: 'Overview Section (#overview)', desc: '4-Acre Landmark Parcel Opposite PIECC, Moshi' },
+    { id: 'residences', title: 'Residences Section (#residences)', desc: '2 & 3 BHK Smart & Spacious Homes from ₹73 Lacs*' },
+    { id: 'amenities', title: 'Amenities Section (#amenities)', desc: '40+ Curated Lifestyle & Wellness Amenities' },
+    { id: 'floor-plans', title: 'Floor Plans Section (#floor-plans)', desc: 'Vastu-Compliant 2 & 3 BHK Layouts' },
+    { id: 'gallery', title: 'Gallery Section (#gallery)', desc: 'Interior & Exterior Architectural Visuals' },
+    { id: 'location', title: 'Location Section (#location)', desc: 'Opposite PIECC Convention Center, Moshi, Pune' },
+    { id: 'contact', title: 'Contact Section (#contact)', desc: 'Direct Sales Office & Site Visit Scheduling' },
+  ];
+
   return (
-    <div className="min-h-screen bg-ivory text-charcoal font-sans selection:bg-champagne-500 selection:text-white">
-      {/* 1. RESPONSIVE NAVBAR */}
+    <div className="min-h-screen bg-ivory text-charcoal font-sans selection:bg-champagne-500 selection:text-white pb-20">
+      {/* 1. KESAR HIGH STREET NAVBAR */}
       <Navbar onBookVisitClick={handleBookVisit} />
 
-      {/* MODAL NOTIFICATION BANNER (For CTA Testing) */}
-      {modalOpenMessage && (
-        <div className="fixed bottom-6 right-6 z-50 max-w-md bg-forest-950 text-white p-4 rounded-lg shadow-luxury-elevated border border-champagne-400 flex items-start justify-between gap-3 animate-bounce">
-          <div className="text-xs">
-            <span className="font-semibold text-champagne-300 block mb-1">Interactive CTA Verified</span>
-            <p className="text-champagne-100/90">{modalOpenMessage}</p>
+      {/* INTERACTIVE CTA FEEDBACK BANNER */}
+      {modalFeedback && (
+        <div className="fixed bottom-6 right-6 z-modal max-w-sm bg-forest-900 text-ivory p-4 rounded-sm shadow-luxury-elevated border border-champagne-400 flex items-start justify-between gap-3 text-xs">
+          <div>
+            <span className="font-semibold text-champagne-300 block mb-1">Navbar CTA Event</span>
+            <p className="text-ivory/80">{modalFeedback}</p>
           </div>
           <button
-            onClick={() => setModalOpenMessage(null)}
-            className="text-champagne-400 hover:text-white text-xs font-bold"
+            onClick={() => setModalFeedback(null)}
+            className="text-champagne-400 hover:text-white font-bold ml-2 cursor-pointer"
+            aria-label="Dismiss feedback"
           >
             ✕
           </button>
         </div>
       )}
 
-      {/* 2. HERO SECTION */}
-      <Hero onBookVisitClick={handleBookVisit} />
-
-      {/* 3. TEST SECTIONS (For testing scrollspy active indicators and smooth anchor offsets) */}
-
-      {/* OVERVIEW */}
-      <section id="overview" className="py-24 border-b border-ivory-border bg-white scroll-mt-20">
+      {/* RESPONSIVE TESTING TOOLBAR (Allows testing 320px to 1440px+) */}
+      <div className="pt-20 sm:pt-24 pb-4 bg-white border-b border-ivory-border shadow-sm">
         <Container size="xl">
-          <SectionHeading
-            overline="Project Overview"
-            title="A Monument to Modern"
-            titleHighlight="Architectural Grace"
-            subtitle="Thoughtfully conceived by Kesar Group, offering expansive residences with excellent privacy, abundant sunlight, and contemporary lifestyle amenities."
-            align="center"
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card variant="light" className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-full bg-champagne-100 text-champagne-800 mx-auto flex items-center justify-center mb-3">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <CardTitle>4-Acre Landmark</CardTitle>
-                <CardDescription>
-                  4 Towers rising 2 Basements + Ground + 22 Storeys high above Moshi.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card variant="gold-bordered" className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-full bg-champagne-500 text-white mx-auto flex items-center justify-center mb-3">
-                  <Sparkles className="w-6 h-6" />
-                </div>
-                <CardTitle>40+ Curated Amenities</CardTitle>
-                <CardDescription>
-                  World-class clubhouse, swimming pools, fitness hubs, and landscaped zones.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card variant="light" className="text-center">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-full bg-champagne-100 text-champagne-800 mx-auto flex items-center justify-center mb-3">
-                  <ShieldCheck className="w-6 h-6" />
-                </div>
-                <CardTitle>RERA Approved</CardTitle>
-                <CardDescription>
-                  Registered under MahaRERA: {PROJECT_DETAILS.rera.project}.
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2">
+              <Maximize2 className="w-4 h-4 text-champagne-600 shrink-0" />
+              <span className="font-semibold text-forest-900 uppercase tracking-wider">
+                Responsive Test Widths:
+              </span>
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5 overflow-x-auto">
+              {(['full', '320px', '375px', '390px', '430px', '768px', '1024px', '1280px', '1440px'] as const).map((w) => (
+                <button
+                  key={w}
+                  onClick={() => setSimulatedWidth(w)}
+                  className={`px-2.5 py-1 text-xs font-mono rounded-xs transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-500 ${
+                    simulatedWidth === w
+                      ? 'bg-forest-900 text-champagne-300 font-bold border border-champagne-500/40 shadow-sm'
+                      : 'bg-ivory text-charcoal hover:bg-ivory-warm border border-ivory-border'
+                  }`}
+                >
+                  {w === 'full' ? 'Unconstrained (100%)' : w}
+                </button>
+              ))}
+            </div>
           </div>
         </Container>
-      </section>
+      </div>
 
-      {/* RESIDENCES */}
-      <section id="residences" className="py-24 border-b border-ivory-border bg-ivory scroll-mt-20">
-        <Container size="xl">
-          <SectionHeading
-            overline="Configurations & Pricing"
-            title="2 BHK & 3 BHK"
-            titleHighlight="Grand Residences"
-            subtitle="Spacious layout planning crafted for modern family lifestyles and seamless luxury living."
-            align="center"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card variant="light">
-              <CardHeader>
-                <Badge variant="forest" size="sm" className="w-fit mb-2">Smart Living</Badge>
-                <CardTitle>2 BHK Luxury Residences</CardTitle>
-                <CardDescription>Carpet Area: 788 Sq.Ft.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-charcoal/70">
-                  Well-ventilated master bedrooms, dedicated EV charging point, and premium bath fittings.
+      {/* SIMULATION CONTAINER (Applies width constraint if selected) */}
+      <div
+        className={`mx-auto transition-all duration-300 ${
+          simulatedWidth !== 'full' ? 'border-x border-champagne-400/40 shadow-luxury-elevated my-4' : ''
+        }`}
+        style={{ maxWidth: simulatedWidth !== 'full' ? simulatedWidth : '100%' }}
+      >
+        {/* TOP HERO SIMULATION AREA (To test transparent-to-sticky navbar transition) */}
+        <section
+          id="home"
+          className="relative min-h-[70vh] bg-forest-950 text-white flex items-center justify-center py-20 bg-forest-texture border-b border-champagne-500/20"
+        >
+          <Container size="xl" className="text-center">
+            <Eyebrow variant="dark" withDot className="mb-3">
+              Navbar Testing Canvas
+            </Eyebrow>
+
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl text-white font-normal leading-tight tracking-tight mb-4 max-w-3xl mx-auto">
+              Kesar High Street <br />
+              <span className="text-champagne-300 italic text-2xl sm:text-4xl md:text-5xl">
+                Navigation Verification
+              </span>
+            </h1>
+
+            <p className="text-xs sm:text-sm text-champagne-100/80 max-w-xl mx-auto mb-8 font-light leading-relaxed">
+              At the top of the page, the navbar sits in its transparent overlay state. Scroll down past 30px to test the solid sticky transition, blur backdrop, and active ScrollSpy indicator.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a href="#overview">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  rightIcon={<ArrowDown className="w-4 h-4" />}
+                >
+                  Scroll Down to Test Sticky Header
+                </Button>
+              </a>
+            </div>
+
+            <div className="mt-12 inline-flex items-center gap-2 text-[11px] text-champagne-300/80 border border-champagne-500/20 px-3 py-1.5 rounded-xs bg-forest-900/60">
+              <Badge variant="live" size="sm">Navbar Status</Badge>
+              <span>Scroll Y: {'>'} 30px triggers solid/blurred sticky state</span>
+            </div>
+          </Container>
+        </section>
+
+        {/* ANCHOR SECTIONS (For Testing Smooth Scroll & ScrollSpy) */}
+        {sections.map((sec, idx) => (
+          <section
+            key={sec.id}
+            id={sec.id}
+            className={`py-20 sm:py-24 border-b border-ivory-border scroll-mt-16 ${
+              idx % 2 === 0 ? 'bg-white' : 'bg-ivory'
+            }`}
+          >
+            <Container size="xl">
+              <div className="max-w-2xl mx-auto text-center p-8 sm:p-12 rounded-lg border border-ivory-border bg-ivory/60 shadow-sm">
+                <span className="text-[10px] uppercase tracking-widest text-champagne-700 font-semibold font-mono block mb-1">
+                  Anchor Target #{sec.id}
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl text-forest-900 font-normal mb-2">
+                  {sec.title}
+                </h2>
+                <p className="text-xs sm:text-sm text-charcoal-muted mb-6 leading-relaxed">
+                  {sec.desc}
                 </p>
-                <div className="pt-4 flex items-center justify-between border-t border-ivory-border">
-                  <span className="font-serif text-2xl font-bold text-forest-950">₹73 Lacs* Onwards</span>
-                  <Button variant="outline" size="sm" onClick={handleBookVisit}>Enquire Now</Button>
+                <div className="inline-flex items-center gap-2 text-xs text-charcoal-light">
+                  <span>Actual section content will be built in its upcoming milestone.</span>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card variant="gold-bordered">
-              <CardHeader>
-                <Badge variant="gold" size="sm" className="w-fit mb-2">Flagship Luxury</Badge>
-                <CardTitle>3 BHK Grand Residences</CardTitle>
-                <CardDescription>Carpet Area: 1008 Sq.Ft. • Dedicated Pooja Room</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-charcoal/70">
-                  Private foyer entrance, spacious pooja room, dedicated EV charging point, and expansive deck.
-                </p>
-                <div className="pt-4 flex items-center justify-between border-t border-ivory-border">
-                  <span className="font-serif text-2xl font-bold text-forest-950">₹93 Lacs* Onwards</span>
-                  <Button variant="primary" size="sm" onClick={handleBookVisit}>Enquire Now</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </Container>
-      </section>
-
-      {/* AMENITIES */}
-      <section id="amenities" className="py-24 border-b border-champagne-500/20 bg-forest-950 text-white scroll-mt-20 bg-forest-texture">
-        <Container size="xl">
-          <SectionHeading
-            overline="Lifestyle Amenities"
-            title="Indulge in 40+"
-            titleHighlight="Curated Lifestyle Amenities"
-            subtitle="From wellness sanctuaries to social clubhouses, every amenity is curated for refined living."
-            align="center"
-            theme="dark"
-          />
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
-            {['Luxury Clubhouse', 'Infinity Swimming Pool', 'Techno Gym', 'Kids Play Haven', 'Sports Arena', 'Zen Garden', 'Co-working Pods', '3-Tier Security'].map((item) => (
-              <div key={item} className="p-5 rounded bg-forest-900/60 border border-champagne-500/20 text-champagne-200 text-xs font-medium">
-                {item}
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* FLOOR PLANS */}
-      <section id="floor-plans" className="py-24 border-b border-ivory-border bg-white scroll-mt-20">
-        <Container size="xl">
-          <SectionHeading
-            overline="Architectural Layouts"
-            title="Site & Floor"
-            titleHighlight="Plans"
-            subtitle="Vastu-compliant layouts engineered for zero dead-space and optimal functionality."
-            align="center"
-          />
-          <div className="max-w-2xl mx-auto p-12 rounded-lg border border-dashed border-champagne-400 bg-ivory text-center">
-            <span className="text-xs uppercase tracking-widest text-champagne-700 font-semibold block mb-2">Master Layout & Unit Plans</span>
-            <p className="text-sm text-charcoal/70 mb-4">Interactive floor plan selector and lightbox will be built in the Floor Plans milestone.</p>
-            <Button variant="outline" size="sm" onClick={handleBookVisit}>Request Floor Plan Brochure</Button>
-          </div>
-        </Container>
-      </section>
-
-      {/* GALLERY */}
-      <section id="gallery" className="py-24 border-b border-ivory-border bg-ivory scroll-mt-20">
-        <Container size="xl">
-          <SectionHeading
-            overline="Visual Experience"
-            title="Interior & Exterior"
-            titleHighlight="Gallery"
-            subtitle="Explore the grandeur and craftsmanship of Kesar High Street."
-            align="center"
-          />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {['Grand Entrance Gate', 'Sample Flat Living Room', 'Master Bedroom Deck', 'Clubhouse & Lounge'].map((name, i) => (
-              <div key={name} className="h-44 rounded bg-champagne-200/50 border border-champagne-300 flex flex-col items-center justify-center p-4 text-center">
-                <span className="text-xs font-semibold text-forest-950 font-serif mb-1">{name}</span>
-                <span className="text-[10px] text-charcoal/60 uppercase tracking-wider">Preview #{i + 1}</span>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* LOCATION */}
-      <section id="location" className="py-24 border-b border-ivory-border bg-white scroll-mt-20">
-        <Container size="xl">
-          <SectionHeading
-            overline="Strategic Moshi Location"
-            title="Connectivity &"
-            titleHighlight="Advantage"
-            subtitle="Positioned right opposite PIECC, 2 minutes from Pune-Nashik Highway and District Court."
-            align="center"
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-center">
-            <div className="p-6 bg-ivory rounded border border-ivory-border">
-              <span className="text-2xl font-serif text-forest-950 font-bold block mb-1">0 Mins</span>
-              <span className="text-xs text-charcoal/70">Opposite PIECC Convention Center</span>
-            </div>
-            <div className="p-6 bg-ivory rounded border border-ivory-border">
-              <span className="text-2xl font-serif text-forest-950 font-bold block mb-1">2 Mins</span>
-              <span className="text-xs text-charcoal/70">Pune-Nashik Highway & District Court</span>
-            </div>
-            <div className="p-6 bg-ivory rounded border border-ivory-border">
-              <span className="text-2xl font-serif text-forest-950 font-bold block mb-1">1.0 Km</span>
-              <span className="text-xs text-charcoal/70">COEP Moshi Campus & Spine Road</span>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="py-24 bg-forest-950 text-white scroll-mt-20 bg-forest-texture">
-        <Container size="xl">
-          <SectionHeading
-            overline="Get In Touch"
-            title="Schedule a Personalized"
-            titleHighlight="Site Tour"
-            subtitle="Our sales advisors are ready to walk you through sample apartments and exclusive launch pricing."
-            align="center"
-            theme="dark"
-          />
-          <div className="max-w-md mx-auto p-8 rounded-lg bg-forest-900/80 border border-champagne-500/30 text-center">
-            <span className="text-xs uppercase tracking-widest text-champagne-400 font-semibold block mb-2">Direct Sales Desk</span>
-            <a href={`tel:${PROJECT_DETAILS.contact.phoneRaw}`} className="font-serif text-2xl text-white block mb-4 hover:text-champagne-300 transition-colors">
-              {PROJECT_DETAILS.contact.phone}
-            </a>
-            <Button variant="secondary" size="lg" fullWidth onClick={handleBookVisit}>
-              Book VIP Site Visit
-            </Button>
-          </div>
-        </Container>
-      </section>
+            </Container>
+          </section>
+        ))}
+      </div>
 
       {/* FOOTER */}
-      <footer className="py-8 bg-forest-950 border-t border-forest-800 text-center text-xs text-champagne-300/60">
+      <footer className="py-6 text-center text-xs text-charcoal-muted border-t border-ivory-border">
         <Container size="xl">
-          <p>© 2025 {PROJECT_DETAILS.name} by {PROJECT_DETAILS.developer}. All Rights Reserved.</p>
-          <p className="mt-1">MahaRERA: {PROJECT_DETAILS.rera.project}</p>
+          <p>© 2025 Kesar High Street by Kesar Group. Navbar Component Verified.</p>
         </Container>
       </footer>
     </div>
