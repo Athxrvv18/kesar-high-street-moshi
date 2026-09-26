@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ivory text-charcoal font-sans antialiased selection:bg-champagne-500 selection:text-white;
+  }
+
+  /* Headings Hierarchy */
+  h1, .h1 {
+    @apply font-serif text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-forest-950 leading-[1.1];
+  }
+
+  h2, .h2 {
+    @apply font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-forest-950 leading-[1.15];
+  }
+
+  h3, .h3 {
+    @apply font-serif text-2xl sm:text-3xl font-medium tracking-tight text-forest-950 leading-[1.2];
+  }
+
+  h4, .h4 {
+    @apply font-serif text-xl sm:text-2xl font-medium text-forest-950 leading-[1.25];
+  }
+
+  h5, .h5 {
+    @apply font-sans text-lg sm:text-xl font-semibold text-forest-950;
+  }
+
+  h6, .h6 {
+    @apply font-sans text-sm font-semibold tracking-wider uppercase text-champagne-700;
+  }
+
+  p {
+    @apply leading-relaxed text-charcoal/80;
+  }
+
+  /* Focus visible styling */
+  :focus-visible {
+    @apply outline-none ring-2 ring-champagne-500 ring-offset-2 ring-offset-ivory;
+  }
+
+  /* Refined Luxury Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF8F5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D8C6A5;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B2925F;
+  }
+}
+
+@layer components {
+  /* Architectural Card */
+  .card-luxury {
+    @apply bg-white border border-ivory-border rounded-lg shadow-luxury transition-all duration-300 hover:shadow-luxury-hover hover:border-champagne-300;
+  }
+
+  /* Dark Luxury Card */
+  .card-luxury-dark {
+    @apply bg-forest-950 border border-champagne-500/20 text-white rounded-lg shadow-luxury transition-all duration-300 hover:border-champagne-400/40;
+  }
+
+  /* Luxury Link with Hover Line */
+  .link-luxury {
+    @apply relative inline-flex items-center gap-1.5 font-medium text-forest-900 transition-colors duration-200 hover:text-champagne-700;
+  }
+
+  .link-luxury::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 w-0 h-px bg-champagne-500 transition-all duration-300 ease-out;
+  }
+
+  .link-luxury:hover::after {
+    @apply w-full;
+  }
+
+  /* Architectural Hairline Divider with Diamond */
+  .gold-divider {
+    @apply flex items-center justify-center gap-3 my-6 text-champagne-400;
+  }
+
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent via-champagne-300/60 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #c4ab80 0%, #d8c6a5 50%, #9b794b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #b2925f 0%, #c4ab80 50%, #9b794b 100%);
+  }
+
+  .border-gold-subtle {
+    border-color: rgba(178, 146, 95, 0.25);
+  }
+
+  .bg-forest-texture {
+    background-color: #0B1713;
+    background-image: radial-gradient(rgba(178, 146, 95, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
