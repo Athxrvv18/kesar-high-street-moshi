@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Navbar } from './components/layout/Navbar';
-import { Hero, ProjectHighlights, About } from './sections';
+import { Hero, ProjectHighlights, About, Residences } from './sections';
 import { Container } from './components/ui/Container';
-import { Eyebrow } from './components/ui/Eyebrow';
-import { Maximize2, CheckCircle2 } from 'lucide-react';
+import { Maximize2 } from 'lucide-react';
 
 export function App() {
   const [modalFeedback, setModalFeedback] = useState<string | null>(null);
   const [simulatedWidth, setSimulatedWidth] = useState<'full' | '320px' | '375px' | '390px' | '430px' | '768px' | '1024px' | '1280px' | '1440px'>('full');
 
-  const handleBookVisit = () => {
-    setModalFeedback('Primary CTA "Book a Site Visit" clicked. Enquiry flow will connect here in lead generation phase.');
+  const handleBookVisit = (customNote?: string) => {
+    setModalFeedback(
+      customNote || 'Primary CTA "Book a Site Visit" clicked. Enquiry flow will connect here in lead generation phase.'
+    );
   };
 
   return (
@@ -80,35 +81,14 @@ export function App() {
         {/* 4. ABOUT SECTION (#overview) */}
         <About />
 
-        {/* 5. RESIDENCES ANCHOR TARGET (Tested by secondary CTA "Explore Residences") */}
-        <section
-          id="residences"
-          className="py-20 sm:py-24 bg-white border-t border-ivory-border scroll-mt-16"
-        >
-          <Container size="xl">
-            <div className="max-w-xl mx-auto text-center p-8 sm:p-10 rounded-lg border border-ivory-border bg-ivory shadow-sm">
-              <Eyebrow variant="forest" withDot className="mb-2">
-                Anchor Target: #residences
-              </Eyebrow>
-              <h2 className="font-serif text-2xl sm:text-3xl text-forest-900 font-normal mb-3">
-                Residences Section Anchor
-              </h2>
-              <p className="text-xs sm:text-sm text-charcoal-muted mb-6 leading-relaxed">
-                The Hero secondary CTA &ldquo;Explore Residences&rdquo; successfully scrolled here. Actual apartment specifications, 2 &amp; 3 BHK floor plans, and pricing will be built in the upcoming residences milestone.
-              </p>
-              <div className="inline-flex items-center gap-2 text-xs font-medium text-forest-800 bg-forest-50 border border-forest-200 px-3.5 py-1.5 rounded-xs">
-                <CheckCircle2 className="w-4 h-4 text-forest-700" />
-                <span>Secondary CTA Anchor Integration Verified</span>
-              </div>
-            </div>
-          </Container>
-        </section>
+        {/* 5. RESIDENCES SECTION (#residences) */}
+        <Residences onBookVisitClick={(type) => handleBookVisit(type ? `Site Visit Booking for ${type}` : undefined)} />
       </div>
 
       {/* FOOTER */}
-      <footer className="py-6 text-center text-xs text-charcoal-muted border-t border-ivory-border">
+      <footer id="contact" className="py-8 text-center text-xs text-charcoal-muted border-t border-ivory-border bg-white scroll-mt-16">
         <Container size="xl">
-          <p>© 2025 Kesar High Street by Kesar Group. Hero Section Built &amp; Verified.</p>
+          <p>© 2025 Kesar High Street by Kesar Group. All rights reserved. RERA Registered.</p>
         </Container>
       </footer>
     </div>
