@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Navbar } from './components/layout/Navbar';
-import { Hero } from './sections/Hero';
-import { ProjectHighlights } from './sections/ProjectHighlights';
+import { Hero, ProjectHighlights, About } from './sections';
 import { Container } from './components/ui/Container';
 import { Eyebrow } from './components/ui/Eyebrow';
 import { Maximize2, CheckCircle2 } from 'lucide-react';
@@ -78,7 +77,10 @@ export function App() {
         {/* 3. PROJECT HIGHLIGHTS SECTION */}
         <ProjectHighlights />
 
-        {/* 4. RESIDENCES ANCHOR TARGET (Tested by secondary CTA "Explore Residences") */}
+        {/* 4. ABOUT SECTION (#overview) */}
+        <About />
+
+        {/* 5. RESIDENCES ANCHOR TARGET (Tested by secondary CTA "Explore Residences") */}
         <section
           id="residences"
           className="py-20 sm:py-24 bg-white border-t border-ivory-border scroll-mt-16"
