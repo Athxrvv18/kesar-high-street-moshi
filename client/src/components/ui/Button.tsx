@@ -31,7 +31,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     // Base styles (accessible focus visible, touch target min height, no overflow)
     const baseClasses =
-      'inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 cursor-pointer select-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-500 focus-visible:ring-offset-2';
+      'group inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 cursor-pointer select-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-500 focus-visible:ring-offset-2';
 
     // Size variants
     const sizeClasses = {
@@ -40,26 +40,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'text-base px-7 py-3 min-h-[48px] rounded-sm gap-2.5 tracking-wider',
     };
 
-    // Style variants matching design requirements
+    // Style variants matching design requirements - ALWAYS clearly visible in normal state
     const variantClasses = {
-      // Primary: Forest green background, light text, elegant hover state
+      // Primary: High-contrast authentic copper, crisp white text, immediately visible without hover
       primary:
-        'bg-forest-900 text-ivory border border-champagne-500/30 hover:bg-forest-800 hover:border-champagne-400 shadow-luxury-sm hover:shadow-luxury',
-      // Secondary: Transparent/light background, gold or forest-green border, subtle hover animation
+        'bg-copper-500 text-white font-semibold border border-copper-400/80 shadow-luxury-sm hover:bg-copper-600 hover:border-copper-300 hover:shadow-luxury active:bg-copper-700',
+      // Secondary: Clean architectural button with clear border and visible background
       secondary:
-        'bg-transparent text-forest-900 border border-champagne-500/80 hover:bg-champagne-50/70 hover:border-champagne-600 shadow-sm hover:shadow-luxury-sm',
+        'bg-white text-forest-950 font-medium border border-copper-300/80 hover:bg-copper-50 hover:border-copper-400 hover:text-copper-700 shadow-xs hover:shadow-luxury-sm',
       // Text Button: Text-based, subtle hover
       text:
-        'bg-transparent text-forest-900 px-0 py-1 min-h-0 rounded-none border-b border-transparent hover:border-champagne-500 hover:text-champagne-700 font-semibold gap-1.5',
+        'bg-transparent text-forest-900 px-0 py-1 min-h-0 rounded-none border-b border-transparent hover:border-copper-500 hover:text-copper-600 font-semibold gap-1.5',
       // Outline: High contrast border
       outline:
-        'bg-transparent text-forest-950 border border-forest-800/80 hover:bg-forest-900 hover:text-white',
+        'bg-transparent text-forest-950 font-medium border border-forest-800/80 hover:bg-forest-900 hover:text-white',
       // Ghost: Subdued background on hover
       ghost:
-        'bg-transparent text-forest-900 hover:bg-ivory-warm hover:text-champagne-700',
-      // Dark Outline: For dark surfaces
+        'bg-transparent text-forest-900 font-medium hover:bg-ivory-warm hover:text-copper-600',
+      // Dark Outline: For dark surfaces - crisp white with subtle wash
       'dark-outline':
-        'bg-transparent text-champagne-300 border border-champagne-400/50 hover:bg-champagne-500/10 hover:border-champagne-400 hover:text-champagne-200',
+        'bg-white/10 text-white font-medium border border-white/30 hover:bg-white/20 hover:border-white/60 hover:text-white shadow-xs',
     };
 
     return (

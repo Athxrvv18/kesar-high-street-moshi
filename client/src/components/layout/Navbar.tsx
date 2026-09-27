@@ -134,40 +134,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
   };
 
   return (
-    <header
+    <motion.header
       role="banner"
-      className={`fixed top-0 left-0 right-0 z-header transition-all duration-300 ${
+      initial={shouldReduceMotion ? { opacity: 0 } : { y: -20, opacity: 0 }}
+      animate={shouldReduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-header transition-colors duration-300 ${
         isScrolled
-          ? 'bg-forest-900/95 backdrop-blur-md border-b border-champagne-500/20 shadow-luxury-sm py-2.5 sm:py-3'
-          : 'bg-gradient-to-b from-forest-950/80 via-forest-950/40 to-transparent backdrop-blur-[2px] border-b border-white/5 py-3.5 sm:py-4'
+          ? 'bg-forest-950/95 backdrop-blur-md border-b border-copper-500/20 shadow-luxury-sm py-2.5 sm:py-3'
+          : 'bg-gradient-to-b from-forest-950/85 via-forest-950/40 to-transparent backdrop-blur-[2px] border-b border-white/5 py-3.5 sm:py-4'
       }`}
     >
-      <Container size="xl">
+      <Container size="hero">
         <div className="flex items-center justify-between gap-4">
-          {/* 1. BRAND / LOGO AREA: Text-Based Architectural Treatment */}
+          {/* 1. BRAND / LOGO AREA: Real Kesar High Street Official Logo */}
           <a
             href="#home"
-            className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400 rounded-sm"
+            className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400 rounded-sm"
             aria-label="Kesar High Street - Moshi, Pune"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xs bg-forest-950 border border-champagne-500/40 flex items-center justify-center text-champagne-300 font-display font-bold text-sm sm:text-base shadow-sm group-hover:border-champagne-400 transition-colors">
-              K
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-sm sm:text-base tracking-wider text-white font-bold leading-tight group-hover:text-champagne-300 transition-colors">
-                KESAR HIGH STREET
-              </span>
-              <span className="text-[9px] sm:text-[10px] font-sans text-champagne-300/75 uppercase tracking-widest leading-none mt-0.5">
-                Moshi, Pune
-              </span>
-            </div>
+            <img
+              src="/images/branding/logo.png"
+              alt="Kesar High Street Logo"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-102 bg-white/95 rounded-xs p-1 shadow-sm"
+            />
           </a>
 
-          {/* 2. DESKTOP NAVIGATION LINKS (Minimal & Spacious) */}
+          {/* 2. DESKTOP NAVIGATION LINKS (Comfortable spacing on 1280px+ viewports) */}
           <nav
             role="navigation"
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center gap-1 xl:gap-2"
+            className="hidden xl:flex items-center gap-1.5 2xl:gap-3"
           >
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
@@ -176,17 +173,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
                   key={item.id}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`relative px-2.5 py-1.5 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 rounded-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400 ${
+                  className={`relative px-2.5 py-1.5 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 rounded-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400 ${
                     isActive
-                      ? 'text-champagne-300 font-semibold'
-                      : 'text-ivory/85 hover:text-champagne-200'
+                      ? 'text-copper-300 font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]'
+                      : 'text-ivory/90 hover:text-copper-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]'
                   }`}
                 >
                   {item.label}
                   {isActive && (
                     <motion.span
                       layoutId="activeNavUnderline"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-champagne-400 rounded-full"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-copper-400 rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -195,21 +192,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
             })}
           </nav>
 
-          {/* 3. DESKTOP PRIMARY CTA BUTTON */}
-          <div className="hidden lg:flex items-center">
+          {/* 3. PRIMARY CTA BUTTON (Visible on tablet & desktop for easy conversion) */}
+          <div className="hidden sm:flex items-center gap-3">
             <Button
               variant="primary"
               size="sm"
               onClick={handleCtaClick}
-              leftIcon={<Calendar className="w-3.5 h-3.5 text-champagne-300" />}
-              className="text-xs font-semibold px-4 py-2 border-champagne-500/40"
+              leftIcon={<Calendar className="w-3.5 h-3.5 text-copper-300" />}
+              className="text-xs font-semibold px-4 py-2 border-copper-400/40"
             >
               Book a Site Visit
             </Button>
           </div>
 
-          {/* 4. MOBILE MENU BUTTON (Visible below lg / 1024px) */}
-          <div className="flex lg:hidden items-center">
+          {/* 4. HAMBURGER MENU BUTTON (Visible below xl / 1280px, avoiding clipping at ~1177px) */}
+          <div className="flex xl:hidden items-center">
             <button
               ref={menuButtonRef}
               type="button"
@@ -217,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
-              className="p-2 text-champagne-300 hover:text-white rounded-xs border border-champagne-500/30 bg-forest-950/80 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400"
+              className="min-w-[44px] min-h-[44px] p-2.5 flex items-center justify-center text-copper-300 hover:text-white rounded-xs border border-copper-500/30 bg-forest-950/80 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400 cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -236,7 +233,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 top-[56px] sm:top-[62px] bg-forest-950/80 backdrop-blur-sm z-modal-backdrop lg:hidden"
+              className="fixed inset-0 top-[56px] sm:top-[62px] bg-forest-950/80 backdrop-blur-sm z-modal-backdrop xl:hidden"
               aria-hidden="true"
             />
 
@@ -250,22 +247,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
               animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-[56px] sm:top-[62px] left-0 right-0 bg-forest-900 border-b border-champagne-500/30 shadow-luxury-elevated z-modal lg:hidden max-h-[calc(100vh-62px)] overflow-y-auto"
+              className="fixed top-[56px] sm:top-[62px] left-0 right-0 bg-forest-900 border-b border-copper-500/30 shadow-luxury-elevated z-modal xl:hidden max-h-[calc(100vh-62px)] overflow-y-auto"
             >
               <div className="p-5 sm:p-6 space-y-5">
                 {/* Mobile Header Brand & Close Action */}
                 <div className="flex items-center justify-between pb-3 border-b border-forest-800">
-                  <span className="text-xs uppercase tracking-widest text-champagne-400 font-semibold">
-                    Navigation Menu
-                  </span>
+                  <div className="flex items-center gap-2.5">
+                    <img
+                      src="/images/branding/logo.png"
+                      alt="Kesar High Street"
+                      className="h-8 w-auto object-contain bg-white rounded-xs p-0.5 shadow-xs"
+                    />
+                    <span className="text-xs uppercase font-sans tracking-widest text-copper-300 font-semibold">
+                      Navigation
+                    </span>
+                  </div>
                   <button
                     ref={closeButtonRef}
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-label="Close navigation menu"
-                    className="p-1.5 text-champagne-300 hover:text-white rounded-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400"
+                    className="min-w-[44px] min-h-[44px] p-2 flex items-center justify-center text-copper-300 hover:text-white rounded-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-5 h-5" />
                   </button>
                 </div>
 
@@ -314,6 +318,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookVisitClick }) => {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };

@@ -119,43 +119,67 @@ export const FloorPlanModal: React.FC<FloorPlanModalProps> = ({
             <div className="p-5 sm:p-7 space-y-6 max-h-[75vh] overflow-y-auto">
               
               {/* Floor Plan Display / Blueprint Frame */}
-              <div className="relative rounded-xs border border-champagne-400/50 bg-forest-950 p-6 sm:p-8 text-white overflow-hidden">
-                {/* Architectural Blueprint Grid Pattern */}
-                <div
-                  className="absolute inset-0 opacity-15 pointer-events-none"
-                  style={{
-                    backgroundImage: `linear-gradient(#C2A374 1px, transparent 1px), linear-gradient(90deg, #C2A374 1px, transparent 1px)`,
-                    backgroundSize: '24px 24px',
-                  }}
-                  aria-hidden="true"
-                />
-
-                <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto py-6 sm:py-10">
-                  <div className="w-14 h-14 rounded-full bg-champagne-500/10 border border-champagne-400/40 flex items-center justify-center text-champagne-300 mb-4">
-                    <Compass className="w-7 h-7" />
+              <div className="relative rounded-xs border border-copper-400/40 bg-forest-950 p-4 sm:p-6 text-white overflow-hidden">
+                {residence.floorPlanImage ? (
+                  <div className="flex flex-col items-center">
+                    <div className="w-full bg-white rounded-xs p-2 sm:p-4 mb-4 flex items-center justify-center shadow-inner">
+                      <img
+                        src={residence.floorPlanImage}
+                        alt={`${residence.name} Layout Plan`}
+                        className="max-h-[340px] w-auto object-contain mx-auto"
+                        loading="eager"
+                      />
+                    </div>
+                    <div className="flex flex-wrap items-center justify-between w-full text-xs text-copper-200 pt-1">
+                      <div className="flex items-center gap-1.5 font-sans font-medium">
+                        <ShieldCheck className="w-4 h-4 text-copper-400 shrink-0" />
+                        <span>MahaRERA Approved • Zero Dead-Space Layout</span>
+                      </div>
+                      <div className="font-semibold text-white">
+                        Starting from <span className="text-copper-300 font-serif text-base">{residence.price}</span>
+                      </div>
+                    </div>
                   </div>
+                ) : (
+                  <>
+                    {/* Architectural Blueprint Grid Pattern */}
+                    <div
+                      className="absolute inset-0 opacity-15 pointer-events-none"
+                      style={{
+                        backgroundImage: `linear-gradient(#CB7246 1px, transparent 1px), linear-gradient(90deg, #CB7246 1px, transparent 1px)`,
+                        backgroundSize: '24px 24px',
+                      }}
+                      aria-hidden="true"
+                    />
 
-                  <span className="text-xs uppercase font-mono tracking-widest text-champagne-400 mb-1">
-                    Architectural Layout Plan
-                  </span>
-                  <h4 className="font-serif text-2xl sm:text-3xl text-ivory mb-2">
-                    {residence.type} Configuration
-                  </h4>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-champagne-500/20 border border-champagne-400/30 rounded-xs text-xs font-medium text-champagne-200 mb-4">
-                    <span>{residence.carpetArea} Carpet Area</span>
-                    <span className="text-champagne-400">•</span>
-                    <span>{residence.carpetAreaSqM}</span>
-                  </div>
+                    <div className="relative z-10 flex flex-col items-center text-center max-w-lg mx-auto py-6 sm:py-10">
+                      <div className="w-14 h-14 rounded-full bg-copper-500/10 border border-copper-400/40 flex items-center justify-center text-copper-300 mb-4">
+                        <Compass className="w-7 h-7" />
+                      </div>
 
-                  <p className="text-xs sm:text-sm text-ivory/75 leading-relaxed max-w-md mb-4">
-                    Official CAD schematics with exact room layouts, structural clearances, and dual-balcony cross-ventilation are provided upon site visit appointment.
-                  </p>
+                      <span className="text-xs uppercase font-sans tracking-widest text-copper-400 mb-1 font-semibold">
+                        Architectural Layout Plan
+                      </span>
+                      <h4 className="font-serif text-2xl sm:text-3xl text-ivory mb-2">
+                        {residence.type} Configuration
+                      </h4>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-copper-500/20 border border-copper-400/30 rounded-xs text-xs font-medium text-copper-200 mb-4 font-sans">
+                        <span>{residence.carpetArea} Carpet Area</span>
+                        <span className="text-copper-400">•</span>
+                        <span>{residence.carpetAreaSqM}</span>
+                      </div>
 
-                  <div className="flex items-center gap-1.5 text-xs text-champagne-300/90 font-mono">
-                    <ShieldCheck className="w-4 h-4 text-champagne-400 shrink-0" />
-                    <span>RERA Approved • Zero Dead-Space Architecture</span>
-                  </div>
-                </div>
+                      <p className="text-xs sm:text-sm text-ivory/75 leading-relaxed max-w-md mb-4 font-light">
+                        Official CAD schematics with exact room layouts, structural clearances, and cross-ventilation are provided upon site visit appointment.
+                      </p>
+
+                      <div className="flex items-center gap-1.5 text-xs text-copper-300/90 font-sans font-medium">
+                        <ShieldCheck className="w-4 h-4 text-copper-400 shrink-0" />
+                        <span>RERA Approved • Zero Dead-Space Architecture</span>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Verified Features */}

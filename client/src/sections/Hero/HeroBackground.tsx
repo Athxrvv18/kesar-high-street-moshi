@@ -35,18 +35,18 @@ export const HeroBackground: React.FC<HeroBackgroundProps> = ({
         </picture>
       </motion.div>
 
-      {/* 2. Soft Architectural Gradient Overlays (Preserves Architectural Clarity while Ensuring 100% Contrast) */}
+      {/* 2. Directional Architectural Lighting (Clean readability for left-aligned text while keeping the real tower facade crisp & visible) */}
+      {/* Base gentle wash for guaranteed text contrast across all monitor color profiles */}
+      <div className="absolute inset-0 bg-forest-950/30" />
+
       {/* Top Scrim for Navbar Contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/35 to-transparent h-48" />
+      <div className="absolute top-0 inset-x-0 bg-gradient-to-b from-forest-950/85 via-forest-950/30 to-transparent h-32" />
 
-      {/* Center Directional Readability Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-forest-950/80 via-forest-950/50 to-transparent" />
+      {/* Directional Left Readability Scrim (Fades gently to the right so tower is clearly visible) */}
+      <div className="absolute inset-y-0 left-0 w-full md:w-4/5 lg:w-3/5 bg-gradient-to-r from-forest-950/90 via-forest-950/65 to-transparent" />
 
-      {/* Bottom Transition Scrim */}
-      <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/40 to-transparent" />
-
-      {/* Soft Vignette Overlay */}
-      <div className="absolute inset-0 bg-radial-vignette opacity-50" />
+      {/* Bottom Gentle Transition */}
+      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-forest-950 via-forest-950/50 to-transparent h-24" />
     </div>
   );
 };

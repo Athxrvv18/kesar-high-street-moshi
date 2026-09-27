@@ -53,32 +53,40 @@ export const ResidenceCard: React.FC<ResidenceCardProps> = ({
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
           {/* Configuration Pill */}
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xs bg-forest-900/90 backdrop-blur-md border border-champagne-400/40 text-champagne-300 text-xs font-semibold tracking-wider font-mono shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xs bg-forest-950/90 backdrop-blur-md border border-copper-400/40 text-copper-300 text-xs font-semibold tracking-wider font-sans shadow-sm">
             {residence.type}
           </span>
 
           {/* Optional Distinctive Tag */}
           {residence.badge && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-champagne-500/90 backdrop-blur-md text-forest-950 text-[11px] font-semibold tracking-wide shadow-sm">
-              <Sparkles className="w-3 h-3 text-forest-950" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xs bg-copper-500 text-white text-[11px] font-semibold tracking-wide shadow-sm font-sans">
+              <Sparkles className="w-3 h-3 text-white" />
               <span>{residence.badge}</span>
             </span>
           )}
         </div>
 
-        {/* Bottom Carpet Area Overlay */}
+        {/* Bottom Carpet Area & Pricing Overlay */}
         <div className="absolute bottom-3 left-3.5 right-3.5 flex items-end justify-between pointer-events-none text-white">
           <div>
-            <span className="text-[10px] uppercase font-mono tracking-widest text-champagne-300/90 block">
+            <span className="text-[10px] uppercase font-sans tracking-widest text-copper-300/90 block font-medium">
               Carpet Area
             </span>
             <div className="flex items-baseline gap-1.5">
               <span className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-ivory">
                 {residence.carpetArea.split(' ')[0]}
               </span>
-              <span className="text-xs font-mono text-champagne-300">sq.ft.</span>
-              <span className="text-[11px] text-ivory/60 font-mono">({residence.carpetAreaSqM})</span>
+              <span className="text-xs font-sans font-medium text-copper-300">sq.ft.</span>
+              <span className="text-[11px] text-ivory/70 font-sans">({residence.carpetAreaSqM})</span>
             </div>
+          </div>
+          <div className="text-right">
+            <span className="text-[10px] uppercase font-sans tracking-widest text-copper-300/90 block font-medium">
+              Starting From
+            </span>
+            <span className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-white drop-shadow-sm">
+              {residence.price}
+            </span>
           </div>
         </div>
       </div>
@@ -91,7 +99,7 @@ export const ResidenceCard: React.FC<ResidenceCardProps> = ({
           <h3 className="font-serif text-xl sm:text-2xl text-forest-900 font-medium tracking-tight group-hover:text-forest-950 transition-colors">
             {residence.name}
           </h3>
-          <p className="text-xs text-champagne-700 font-medium tracking-wide mt-1">
+          <p className="text-xs text-copper-600 font-medium tracking-wide mt-1">
             {residence.subtitle}
           </p>
         </div>
@@ -103,13 +111,13 @@ export const ResidenceCard: React.FC<ResidenceCardProps> = ({
 
         {/* Verified Layout Highlights */}
         <div className="mt-auto pt-4 border-t border-ivory-border mb-6">
-          <span className="text-[11px] uppercase tracking-wider text-charcoal-muted font-semibold block mb-3 font-mono">
+          <span className="text-[11px] uppercase tracking-wider text-charcoal-muted font-semibold block mb-3 font-sans">
             Configuration Highlights
           </span>
           <ul className="space-y-2 text-xs text-forest-950">
             {residence.highlights.map((highlight, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="w-4 h-4 rounded-xs bg-champagne-100/80 border border-champagne-300/50 flex items-center justify-center text-champagne-700 shrink-0 mt-0.5">
+                <span className="w-4 h-4 rounded-xs bg-copper-50 border border-copper-200/60 flex items-center justify-center text-copper-600 shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 stroke-[2.5]" />
                 </span>
                 <span className="leading-snug">{highlight}</span>

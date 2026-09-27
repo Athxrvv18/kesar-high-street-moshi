@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { getDbStatus } from '../config/db';
 
 const router = Router();
 
@@ -11,6 +12,7 @@ router.get('/', (_req: Request, res: Response) => {
       uptime: process.uptime(),
       timestamp: new Date().toISOString(),
       environment: process.env.NODE_ENV || 'development',
+      database: getDbStatus() ? 'CONNECTED' : 'STANDBY_FALLBACK',
     },
   });
 });

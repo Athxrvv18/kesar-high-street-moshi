@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from './config';
+import { connectDatabase } from './config/db';
 import routes from './routes';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler';
 import { logger } from './utils/logger';
 
 const app = express();
+
+// Initialize Database connection asynchronously
+connectDatabase();
 
 // Middleware
 app.use(cors({

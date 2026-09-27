@@ -52,12 +52,12 @@ export const Residences: React.FC<ResidencesProps> = ({ onBookVisitClick }) => {
       aria-label="The Residences - 2 & 3 BHK Configurations"
       className="relative w-full bg-ivory py-16 sm:py-24 lg:py-28 border-t border-ivory-border scroll-mt-16 overflow-hidden"
     >
-      <Container size="xl">
+      <Container size="hero">
         {/* SECTION HEADER */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <SectionHeading
@@ -76,7 +76,7 @@ export const Residences: React.FC<ResidencesProps> = ({ onBookVisitClick }) => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto"
         >
           {RESIDENCES.map((residence) => (

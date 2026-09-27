@@ -13,32 +13,32 @@ export interface HighlightItem {
 
 export const HIGHLIGHTS: HighlightItem[] = [
   {
+    id: 'pricing',
+    primaryValue: '₹ 73 L*',
+    unit: 'Onwards',
+    label: 'Starting Price',
+    detail: '2 & 3 BHK Premium Residences',
+  },
+  {
     id: 'configurations',
     primaryValue: '2 & 3',
     unit: 'BHK',
-    label: 'Residences',
-    detail: 'Premium residential configurations',
+    label: 'Configurations',
+    detail: 'With Dedicated Pooja Room (3 BHK)',
   },
   {
     id: 'carpet-area',
     primaryValue: '788 / 1008',
     unit: 'Sq.Ft.',
     label: 'Carpet Area',
-    detail: 'Carpet area options',
+    detail: 'Zero dead-space optimal planning',
   },
   {
     id: 'land-parcel',
     primaryValue: '4',
     unit: 'Acres',
     label: 'Land Parcel',
-    detail: 'Expansive gated development',
-  },
-  {
-    id: 'amenities',
-    primaryValue: '40+',
-    unit: 'Amenities',
-    label: 'Lifestyle Amenities',
-    detail: 'Curated wellness & recreation',
+    detail: '4 Grand Towers & 40+ Amenities',
   },
 ];
 
@@ -75,14 +75,14 @@ export const ProjectHighlights: React.FC = () => {
       aria-label="Project Highlights"
       className="relative w-full bg-ivory border-y border-ivory-border py-12 sm:py-16 lg:py-20 overflow-hidden"
     >
-      <Container size="xl">
+      <Container size="hero">
         {/* Subtle Architectural Overline */}
         <div className="flex items-center justify-center gap-3 mb-8 sm:mb-12">
-          <span className="w-8 h-px bg-champagne-400/60" />
-          <span className="text-[11px] font-sans font-semibold uppercase tracking-widest text-champagne-700">
+          <span className="w-8 h-px bg-copper-400/60" />
+          <span className="text-[11px] font-sans font-semibold uppercase tracking-widest text-copper-700">
             Key Project Highlights
           </span>
-          <span className="w-8 h-px bg-champagne-400/60" />
+          <span className="w-8 h-px bg-copper-400/60" />
         </div>
 
         {/* 4-Column Editorial Highlight Grid */}
@@ -90,7 +90,7 @@ export const ProjectHighlights: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
+          viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-10 lg:gap-y-0 divide-y-0 sm:divide-y-0"
         >
           {HIGHLIGHTS.map((item, index) => {
@@ -101,7 +101,7 @@ export const ProjectHighlights: React.FC = () => {
                 key={item.id}
                 variants={itemVariants}
                 className={`flex flex-col items-center text-center px-3 sm:px-6 lg:px-8 relative ${
-                  isNotLast ? 'lg:border-r lg:border-champagne-300/40' : ''
+                  isNotLast ? 'lg:border-r lg:border-copper-200/50' : ''
                 }`}
               >
                 {/* Large Architectural Value */}
@@ -109,7 +109,7 @@ export const ProjectHighlights: React.FC = () => {
                   <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-forest-900 tracking-tight leading-none">
                     {item.primaryValue}
                   </span>
-                  <span className="font-serif text-base sm:text-xl text-champagne-600 font-medium">
+                  <span className="font-serif text-base sm:text-xl text-copper-600 font-medium">
                     {item.unit}
                   </span>
                 </div>

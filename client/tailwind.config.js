@@ -1,8 +1,13 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    path.join(__dirname, 'index.html'),
+    path.join(__dirname, 'src/**/*.{js,ts,jsx,tsx}'),
   ],
   theme: {
     screens: {
@@ -57,10 +62,23 @@ export default {
           light: '#828B88',
           dark: '#0D0F0E',
         },
+        copper: {
+          50: '#FDF7F4',
+          100: '#F8EFEA',
+          200: '#F1DDD4',
+          300: '#E4BFAD',
+          400: '#D79A7E',
+          500: '#CB7246',
+          600: '#B85E32',
+          700: '#8F421C',
+          800: '#753415',
+          900: '#5A260E',
+          DEFAULT: '#CB7246',
+        },
       },
       fontFamily: {
-        display: ['"Cinzel"', '"Cormorant Garamond"', 'Georgia', 'serif'],
-        serif: ['"Cormorant Garamond"', '"Cinzel"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
       },
       borderRadius: {

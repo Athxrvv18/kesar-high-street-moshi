@@ -66,38 +66,47 @@ export const Hero: React.FC<HeroProps> = ({ onBookVisitClick, onExploreClick }) 
       <HeroBackground imageSrc="/images/hero.webp" />
 
       {/* 2. FOREGROUND EDITORIAL CONTENT COMPOSITION */}
-      <Container size="xl" className="relative z-10 w-full my-auto">
+      <Container size="hero" className="relative z-10 w-full my-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
-          className="max-w-3xl"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          className="max-w-4xl xl:max-w-5xl"
         >
           {/* Step 2 in Animation: Eyebrow / Project Label */}
           <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
-            <span className="text-xs uppercase tracking-widest text-champagne-400 font-semibold font-mono">
+            <span className="text-xs uppercase tracking-widest text-copper-400 font-semibold font-sans">
               KESAR HIGH STREET
             </span>
-            <span className="text-champagne-500/60">•</span>
-            <span className="text-xs uppercase tracking-wider text-champagne-300 font-medium flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-champagne-400" />
+            <span className="text-white/30">•</span>
+            <span className="text-xs uppercase tracking-wider text-ivory/80 font-medium flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-copper-400" />
               Moshi, Pune (Opposite PIECC)
             </span>
-            <Badge variant="live" size="sm" className="ml-1">
+            <Badge variant="live" size="sm" className="ml-1 bg-copper-500/20 text-copper-300 border-copper-400/40">
               Booking Open
             </Badge>
+            <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-white/10 text-white/90 border border-white/15">
+              MahaRERA: P52100029284
+            </span>
           </motion.div>
 
           {/* Step 3 in Animation: Main Headline (H1) */}
           <motion.div variants={itemVariants} className="space-y-2 mb-3 sm:mb-4">
-            <h1 className="font-serif text-3xl xs:text-4xl sm:text-6xl lg:text-[4.5rem] text-white font-normal leading-[1.08] tracking-tight">
+            <h1 className="font-serif text-[clamp(2.25rem,4.5vw,4.25rem)] text-white font-normal leading-[1.1] tracking-tight">
               Live the High Street Life
             </h1>
 
             {/* Step 4 in Animation: Supporting Headline (H2) */}
-            <h2 className="font-serif text-lg xs:text-xl sm:text-2xl lg:text-3xl text-champagne-300 font-light italic tracking-normal">
-              Premium 2 &amp; 3 BHK Residences in Moshi, Pune
-            </h2>
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <h2 className="font-serif text-[clamp(1.125rem,2vw,1.75rem)] text-white font-medium tracking-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                Premium 2 &amp; 3 BHK Residences in Moshi, Pune
+              </h2>
+              <span className="inline-flex items-center px-3 py-1 rounded bg-copper-500 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md">
+                ₹ 73 Lacs* Onwards
+              </span>
+            </div>
           </motion.div>
 
           {/* Supporting Information (Location and Offering without unsupported claims) */}
@@ -105,7 +114,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookVisitClick, onExploreClick }) 
             variants={itemVariants}
             className="text-xs xs:text-sm sm:text-base text-ivory/85 font-light leading-relaxed max-w-2xl mb-6 sm:mb-8"
           >
-            Spacious, thoughtfully crafted homes spread across a 4-acre landmark with 4 high-rise towers. Featuring 40+ curated amenities, excellent cross-ventilation, and dedicated EV charging infrastructure for modern family living.
+            Spacious, thoughtfully crafted homes spread across a 4-acre landmark with 4 high-rise towers. Featuring 40+ curated amenities, dedicated pooja rooms in 3 BHK, EV charging for every parking slot, and superior connectivity just 2 mins from District Court &amp; COEP Moshi.
           </motion.p>
 
           {/* Step 5 in Animation: Primary & Secondary CTA Buttons */}
@@ -126,11 +135,11 @@ export const Hero: React.FC<HeroProps> = ({ onBookVisitClick, onExploreClick }) 
 
             {/* Secondary CTA (Scrolls to #residences) */}
             <Button
-              variant="secondary"
+              variant="dark-outline"
               size="lg"
               onClick={handleExploreResidences}
               rightIcon={<ArrowRight className="w-4 h-4" />}
-              className="text-sm sm:text-base text-white border-champagne-400 hover:bg-champagne-500/20 hover:text-white w-full xs:w-auto"
+              className="text-sm sm:text-base border-copper-300/70 bg-forest-950/40 text-white hover:bg-white/15 hover:border-copper-200 backdrop-blur-sm shadow-sm w-full xs:w-auto"
             >
               Explore Residences
             </Button>
@@ -144,7 +153,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookVisitClick, onExploreClick }) 
       </Container>
 
       {/* Step 7: Subtle Desktop Scroll Cue */}
-      <Container size="xl" className="relative z-10 w-full mt-auto">
+      <Container size="hero" className="relative z-10 w-full mt-auto">
         <HeroScrollIndicator targetId="residences" />
       </Container>
     </section>

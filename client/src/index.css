@@ -8,10 +8,18 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
-    @apply bg-ivory text-charcoal font-sans antialiased selection:bg-champagne-500 selection:text-white;
+    @apply bg-ivory text-charcoal font-sans antialiased selection:bg-copper-500 selection:text-white;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  ::selection {
+    @apply bg-copper-500 text-white;
   }
 
   /* Headings Hierarchy */
